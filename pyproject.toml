@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pygame-crt"
+version = "0.1.0"
+description = "Software CRT post-processing for Pygame and pygame-ce games"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "mmtdgn"}]
+keywords = ["pygame", "pygame-ce", "crt", "retro", "post-processing", "gamedev"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Games/Entertainment",
+  "Topic :: Multimedia :: Graphics",
+]
+# Both backends import as pygame. Extras let the user choose ONE distribution.
+dependencies = []
+
+[project.optional-dependencies]
+ce = ["pygame-ce>=2.5.8,<3"]
+pygame = ["pygame>=2.6.1,<3"]
+dev = ["build>=1.2", "twine>=6", "ruff>=0.11"]
+
+[project.scripts]
+pygame-crt-demo = "pygame_crt.demo:main"
+
+[project.urls]
+Homepage = "https://github.com/mmtdgn/pygame-crt"
+Repository = "https://github.com/mmtdgn/pygame-crt"
+Issues = "https://github.com/mmtdgn/pygame-crt/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pygame_crt = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
